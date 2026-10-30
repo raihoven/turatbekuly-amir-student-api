@@ -25,7 +25,7 @@ class StudentControllerTest {
     void homeShowsStudentName() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.student").value("WRONG NAME"));
+                .andExpect(jsonPath("$.student").value("Turatbekuly Amir"));
     }
 
     @Test
@@ -36,7 +36,7 @@ class StudentControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(body))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.fullName").value("WRONG NAME"));
+                .andExpect(jsonPath("$.fullName").value("Turatbekuly Amir"));
     }
 
     @Test
