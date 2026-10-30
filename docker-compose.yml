@@ -4,6 +4,8 @@ services:
   db:
     image: postgres:16
     container_name: turatbekuly-amir-postgres
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
@@ -13,7 +15,7 @@ services:
     networks:
       - turatbekuly_amir_net
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -22,6 +24,8 @@ services:
     build: .
     image: turatbekuly-amir-student-api:${APP_TAG:-v1.0-turatbekuly-amir-37776}
     container_name: turatbekuly-amir-app
+    extra_hosts:
+      - "db:host-gateway"
     depends_on:
       db:
         condition: service_healthy
