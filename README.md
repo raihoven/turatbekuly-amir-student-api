@@ -9,3 +9,4 @@ Description: DOCUMENTATION BRANCH - Student API documented by Turatbekuly Amir
 
 ## Changes
 - Turatbekuly Amir: added GET /api/students/search?name=... (improved Read operation)
+- Jenkins polling trigger check by Turatbekuly Amir
